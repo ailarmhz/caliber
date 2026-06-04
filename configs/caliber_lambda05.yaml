@@ -1,0 +1,32 @@
+student_init_model_path: /models/Qwen3-Embedding-0.6B
+teacher_parquet:         /data/caliber/teacher_emb_with_perturb.parquet
+output_dir:              /data/caliber/runs/caliber_lambda05
+
+# Optimization
+num_epochs:    10
+batch_size:    32
+learning_rate: 1.0e-4
+weight_decay:  0.01
+grad_clip:     1.0
+warmup_frac:   0.05
+
+# Loss
+lambda_num:     0.5
+margin:         0.05
+perturb_weight: 1.0
+
+# Tokenization
+max_length:    512
+padding_side:  right
+
+# Mixed precision / runtime
+use_amp:                true
+model_dtype:            bfloat16
+attn_implementation:    sdpa
+gradient_checkpointing: false
+
+# Validation / checkpointing
+val_frac:        0.02
+save_every_epoch: true
+log_every:       25
+seed:            42

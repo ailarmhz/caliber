@@ -1,0 +1,10 @@
+torch>=2.1
+transformers>=4.40
+numpy
+pandas
+pyarrow
+pyyaml
+mteb
+sentence-transformers
+rank_bm25
+scikit-learn

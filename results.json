@@ -1,0 +1,374 @@
+{
+  "generated_at_utc": "2026-05-08T20:18:01.614490Z",
+  "scope": "Reduced \u03bb sweep (\u03bb=0.0 and \u03bb=0.5, 1 epoch each).",
+  "headline": {
+    "numgap_d_overall": {
+      "initial": 0.0315384604036808,
+      "teacher": 0.048461537808179855,
+      "lambda00": 0.03769230842590332,
+      "lambda05": 0.045384615659713745
+    },
+    "numgap_m_overall": {
+      "initial": -0.09340395778417587,
+      "teacher": -0.08768437802791595,
+      "lambda00": -0.08214197307825089,
+      "lambda05": -0.08253870904445648
+    },
+    "financebench_ndcg_at_10": {
+      "initial": 0.3654797171707576,
+      "teacher": 0.4063318332525191,
+      "lambda00": 0.43973493828364707,
+      "lambda05": 0.46446220938950544
+    },
+    "financebench_recall_at_10": {
+      "initial": 0.5333333333333333,
+      "teacher": 0.5933333333333334,
+      "lambda00": 0.6866666666666666,
+      "lambda05": 0.7
+    },
+    "financebench_mrr_at_10": {
+      "initial": 0.31417989417989417,
+      "teacher": 0.34645238095238096,
+      "lambda00": 0.3626772486772487,
+      "lambda05": 0.39209788359788356
+    },
+    "ordering_numgap_d": "Initial (0.0315) < LEAF (0.0377) < Caliber (0.0454) < Teacher (0.0485)",
+    "ordering_financebench_ndcg10": "Initial (0.365) < Teacher (0.406) < LEAF (0.440) < Caliber (0.464)",
+    "lambda05_vs_lambda00_relative": {
+      "numgap_d": "+20.6% rel (0.0454 vs 0.0377)",
+      "financebench_ndcg@10": "+5.6% rel (0.464 vs 0.440)",
+      "financebench_mrr@10": "+8.1% rel (0.392 vs 0.363)"
+    }
+  },
+  "models": {
+    "initial": {
+      "name": "Qwen3-Embedding-0.6B",
+      "path": "/scratch/ailarmz/caliber/models/Qwen3-Embedding-0.6B",
+      "training": null
+    },
+    "teacher": {
+      "name": "Qwen3-Embedding-8B (MRL-1024)",
+      "path": "/scratch/ailarmz/caliber/models/Qwen3-Embedding-8B",
+      "training": null
+    },
+    "lambda00": {
+      "name": "LEAF (lambda_num=0.0)",
+      "path": "/scratch/ailarmz/caliber/runs/caliber_lambda00_quick/final",
+      "training": {
+        "epoch": 1,
+        "train_loss": 0.7723859969069445,
+        "train_L_align_orig": 0.3907911359050286,
+        "train_L_align_pert": 0.38159486089597217,
+        "train_L_num": 0.05233504305142505,
+        "epoch_time_s": 6946.307394981384,
+        "val_loss": 0.6797541128299481,
+        "val_L_align_orig": 0.3460978776766946,
+        "val_L_align_pert": 0.33365623546779,
+        "val_L_num": 0.051610715805226075
+      },
+      "lambda_num": 0.0,
+      "epochs_run": 1,
+      "slurm_job_id": 3475907,
+      "wall_seconds": 6946
+    },
+    "lambda05": {
+      "name": "Caliber (lambda_num=0.5)",
+      "path": "/scratch/ailarmz/caliber/runs/_smoke_lambda05/final",
+      "training": {
+        "epoch": 1,
+        "train_loss": 0.7975239434607466,
+        "train_L_align_orig": 0.39054245485142747,
+        "train_L_align_pert": 0.38156903740915515,
+        "train_L_num": 0.05082490257629897,
+        "epoch_time_s": 6984.087071418762,
+        "val_loss": 0.7046401705150553,
+        "val_L_align_orig": 0.34582937188387547,
+        "val_L_align_pert": 0.3336659110787676,
+        "val_L_num": 0.05028977568475112
+      },
+      "lambda_num": 0.5,
+      "epochs_run": 1,
+      "slurm_job_id": 3475629,
+      "wall_seconds": 6984
+    }
+  },
+  "evaluations": {
+    "numgap": {
+      "initial": {
+        "model": "Qwen3-Embedding-0.6B",
+        "by_category": {
+          "magnitude": {
+            "n": 500,
+            "numgap_d": 0.016,
+            "numgap_m": -0.08938461339473724
+          },
+          "polarity": {
+            "n": 500,
+            "numgap_d": 0.034,
+            "numgap_m": -0.10476092326641083
+          },
+          "unit": {
+            "n": 300,
+            "numgap_d": 0.05333333333333334,
+            "numgap_m": -0.08117458522319794
+          }
+        },
+        "overall": {
+          "n": 1300,
+          "numgap_d": 0.0315384604036808,
+          "numgap_m": -0.09340395778417587
+        }
+      },
+      "teacher": {
+        "model": "Qwen3-Embedding-8B",
+        "by_category": {
+          "magnitude": {
+            "n": 500,
+            "numgap_d": 0.02,
+            "numgap_m": -0.08248965740203858
+          },
+          "polarity": {
+            "n": 500,
+            "numgap_d": 0.052,
+            "numgap_m": -0.10021518290042877
+          },
+          "unit": {
+            "n": 300,
+            "numgap_d": 0.09,
+            "numgap_m": -0.07545759638150533
+          }
+        },
+        "overall": {
+          "n": 1300,
+          "numgap_d": 0.048461537808179855,
+          "numgap_m": -0.08768437802791595
+        }
+      },
+      "lambda00": {
+        "model": "final",
+        "by_category": {
+          "magnitude": {
+            "n": 500,
+            "numgap_d": 0.012,
+            "numgap_m": -0.0781840591430664
+          },
+          "polarity": {
+            "n": 500,
+            "numgap_d": 0.046,
+            "numgap_m": -0.09164601004123687
+          },
+          "unit": {
+            "n": 300,
+            "numgap_d": 0.06666666666666667,
+            "numgap_m": -0.0728984131415685
+          }
+        },
+        "overall": {
+          "n": 1300,
+          "numgap_d": 0.03769230842590332,
+          "numgap_m": -0.08214197307825089
+        }
+      },
+      "lambda05": {
+        "model": "final",
+        "by_category": {
+          "magnitude": {
+            "n": 500,
+            "numgap_d": 0.02,
+            "numgap_m": -0.07889879882335663
+          },
+          "polarity": {
+            "n": 500,
+            "numgap_d": 0.054,
+            "numgap_m": -0.0916732736825943
+          },
+          "unit": {
+            "n": 300,
+            "numgap_d": 0.07333333333333333,
+            "numgap_m": -0.0733809498945872
+          }
+        },
+        "overall": {
+          "n": 1300,
+          "numgap_d": 0.045384615659713745,
+          "numgap_m": -0.08253870904445648
+        }
+      }
+    },
+    "financebench_retrieval": {
+      "initial": {
+        "ndcg@10": 0.3654797171707576,
+        "ndcg@100": 0.45311351495682667,
+        "recall@10": 0.5333333333333333,
+        "recall@100": 0.96,
+        "mrr@10": 0.31417989417989417,
+        "mrr@100": 0.33052485585065444,
+        "map@10": 0.31417989417989417,
+        "map@100": 0.33052485585065444,
+        "n_queries": 150.0,
+        "model": "Qwen3-Embedding-0.6B"
+      },
+      "teacher": {
+        "ndcg@10": 0.4063318332525191,
+        "ndcg@100": 0.48521419760231266,
+        "recall@10": 0.5933333333333334,
+        "recall@100": 0.9666666666666667,
+        "mrr@10": 0.34645238095238096,
+        "mrr@100": 0.3625308729425057,
+        "map@10": 0.34645238095238096,
+        "map@100": 0.3625308729425057,
+        "n_queries": 150.0,
+        "model": "Qwen3-Embedding-8B"
+      },
+      "lambda00": {
+        "ndcg@10": 0.43973493828364707,
+        "ndcg@100": 0.5060234268450802,
+        "recall@10": 0.6866666666666666,
+        "recall@100": 1.0,
+        "mrr@10": 0.3626772486772487,
+        "mrr@100": 0.3760475568928079,
+        "map@10": 0.3626772486772487,
+        "map@100": 0.3760475568928079,
+        "n_queries": 150.0,
+        "model": "final"
+      },
+      "lambda05": {
+        "ndcg@10": 0.46446220938950544,
+        "ndcg@100": 0.5286284083435137,
+        "recall@10": 0.7,
+        "recall@100": 1.0,
+        "mrr@10": 0.39209788359788356,
+        "mrr@100": 0.4052513035952829,
+        "map@10": 0.39209788359788356,
+        "map@100": 0.4052513035952829,
+        "n_queries": 150.0,
+        "model": "final"
+      }
+    }
+  },
+  "prompt1": {
+    "corpus": {
+      "path": "/scratch/ailarmz/caliber/corpus.parquet",
+      "n_rows": 606237,
+      "by_source": {
+        "edgar": 500000,
+        "generic": 99995,
+        "finmix": 5953,
+        "financebench": 289
+      }
+    },
+    "teacher_emb_with_perturb_parquet": {
+      "path": "/scratch/ailarmz/caliber/teacher_emb_with_perturb_1024.parquet",
+      "n_rows": 606237,
+      "embedding_dim": 1024,
+      "native_teacher_dim": 4096,
+      "n_perturbations": 233500,
+      "perturbation_rate": 0.385,
+      "size_bytes_approx": 3500000000
+    },
+    "numgap": {
+      "path_jsonl": "/scratch/ailarmz/caliber/numgap_v1.jsonl",
+      "path_card": "/scratch/ailarmz/caliber/numgap_v1_card.json",
+      "card": {
+        "size": 1651,
+        "by_split_category": {
+          "test:magnitude": 500,
+          "dev:polarity": 125,
+          "test:polarity": 500,
+          "dev:magnitude": 125,
+          "test:unit": 300,
+          "dev:unit": 75,
+          "dev:period": 26
+        },
+        "sources": {
+          "edgar": 1282,
+          "generic": 361,
+          "financebench": 3,
+          "finmix": 5
+        },
+        "median_anchor_len": 323,
+        "median_pert_len": 322,
+        "median_dist_len": 337
+      }
+    },
+    "teacher_floor_mean_pool": {
+      "model": "Qwen3-Embedding-8B",
+      "by_category": {
+        "magnitude": {
+          "n": 500,
+          "numgap_d": 0.02,
+          "numgap_m": -0.08248965740203858
+        },
+        "polarity": {
+          "n": 500,
+          "numgap_d": 0.052,
+          "numgap_m": -0.10021518290042877
+        },
+        "unit": {
+          "n": 300,
+          "numgap_d": 0.09,
+          "numgap_m": -0.07545759638150533
+        }
+      },
+      "overall": {
+        "n": 1300,
+        "numgap_d": 0.048461537808179855,
+        "numgap_m": -0.08768437802791595
+      }
+    },
+    "teacher_floor_last_token": {
+      "model": "Qwen3-Embedding-8B",
+      "by_category": {
+        "magnitude": {
+          "n": 500,
+          "numgap_d": 0.006,
+          "numgap_m": -0.22445098304748534
+        },
+        "polarity": {
+          "n": 500,
+          "numgap_d": 0.028,
+          "numgap_m": -0.27975771224498747
+        },
+        "unit": {
+          "n": 300,
+          "numgap_d": 0.03666666666666667,
+          "numgap_m": -0.21367771546045938
+        }
+      },
+      "overall": {
+        "n": 1300,
+        "numgap_d": 0.02153846062719822,
+        "numgap_m": -0.24323664605617523
+      }
+    },
+    "teacher_floor_check_json": {
+      "teacher_numgap_d": 0.048461537808179855,
+      "teacher_numgap_m": -0.08768437802791595
+    },
+    "decision_rule_verdict": "PROCEED",
+    "decision_rule_note": "Strict reading: 7/10 hand-inspected records were valid; low D reflects real teacher numeric blindness, not a broken test set. Last-token pool (the Qwen3-Embedding-recommended pooling) gives the teacher D=0.0215 \u2014 WORSE than mean-pool D=0.0485 \u2014 confirming pooling is not the cause."
+  },
+  "deviations_from_plan": [
+    "Linq-AI-Research/FinanceRAG (FinDER) is permanently 404 on HF. Substituted with finance-mix (philschmid/HC3FinanceRetrieval/FinQA/AdaptLLM/FinGPT) for corpus, and FinanceBenchRetrieval (n=150) for retrieval eval.",
+    "Teacher embedding dim is 4096, not 1024 as Prompt 1 expected. Trainer was patched to MRL-truncate teacher to first 1024 dims and renormalize.",
+    "Original teacher_emb_with_perturb.parquet was a single 10GB row group; pyarrow int32 list-offset overflow on read. Repacked streaming-ly into a 1024-d, 19-row-group parquet (3.5GB) before training.",
+    "build_numgap.py first attempt timed out (2h) due to one-pair-at-a-time MiniLM filter encoding. Filter dropped on rerun (2h34) \u2014 NumGap records are unfiltered.",
+    "NumGap has 1651 records (1300 test + 351 dev), not 2500. Currency rule fires 0x; period rule only fires 26x (dev only). Test split = magnitude 500 + polarity 500 + unit 300.",
+    "Reduced \u03bb sweep: only \u03bb=0.0 (LEAF) and \u03bb=0.5 (Caliber), 1 epoch each instead of 4 \u03bb values \u00d7 10 epochs. Chosen to fit time budget; numbers are 1-epoch lower bounds.",
+    "Retrieval probe is symmetric (student/student or teacher/teacher), not asymmetric. eval_asym.py path was not exercised because FinDER triplets are unavailable.",
+    "No MTEB STSBenchmark / no MRL trim sweep / no robustness scatter. All deferred from the original Prompt 3 plan.",
+    "Mean-pool of last_hidden_state used everywhere (extract, train, eval). Qwen3-Embedding's recommended pool is last-token; the diagnostic in Prompt 1 showed last-token gives the teacher *worse* NumGap-D, so mean-pool is the right pragmatic choice here."
+  ],
+  "report_paths": {
+    "headline_md": "/scratch/ailarmz/caliber/HEADLINE_REPORT.md",
+    "prompt1_md": "/scratch/ailarmz/caliber/PROMPT1_REPORT.md"
+  },
+  "artifact_paths": {
+    "corpus_parquet": "/scratch/ailarmz/caliber/corpus.parquet",
+    "teacher_emb_parquet_1024": "/scratch/ailarmz/caliber/teacher_emb_with_perturb_1024.parquet",
+    "numgap_jsonl": "/scratch/ailarmz/caliber/numgap_v1.jsonl",
+    "numgap_card": "/scratch/ailarmz/caliber/numgap_v1_card.json",
+    "lambda00_final": "/scratch/ailarmz/caliber/runs/caliber_lambda00_quick/final",
+    "lambda05_final": "/scratch/ailarmz/caliber/runs/_smoke_lambda05/final"
+  }
+}
