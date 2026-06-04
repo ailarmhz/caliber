@@ -28,7 +28,7 @@ $$\mathcal{L}_{\text{num}} = \max\!\big(0,\; \Delta_t + m - \Delta_s\big), \qqua
 
 $$\mathcal{L} = \mathcal{L}_{\text{align}}(x) + \mathbb{1}[\exists\,\pi]\,\big(\mathcal{L}_{\text{align}}(\pi(x)) + \lambda_{\text{num}}\,\mathcal{L}_{\text{num}}\big)$$
 
-where `Δ_t` is the teacher's discrimination on the pair `(x, π(x))` — precomputed and cached —
+where `Δ_t` is the teacher's discrimination on the pair `(x, π(x))`, precomputed and cached,
 and `Δ_s` is the student's. The hinge `L_num` is zero whenever the student already separates
 `x` from `π(x)` more strongly than the teacher plus a margin `m`; setting `λ_num = 0` recovers
 the LEAF alignment-only baseline.
@@ -137,7 +137,7 @@ python scripts/collect_results.py --runs_dir /data/caliber/runs --out results_ta
 NumGap tests whether an embedder treats a numerically altered passage as a different fact.
 Each record is a triple `(x, π(x), x_dist)`, where `π(x)` changes only numeric content and
 `x_dist` is a topical but numerically unrelated distractor sampled by BM25. A record is
-correct when `cos(x, π(x)) < cos(x, x_dist)` — the numeric edit is a larger semantic break
+correct when `cos(x, π(x)) < cos(x, x_dist)` , the numeric edit is a larger semantic break
 than topical drift. The primary metric **NumGap-D** is the fraction of correct records
 (random baseline 0.5); **NumGap-M** is the mean margin. The released v1 split has 1,300 test
 records across magnitude, polarity, and unit categories.
